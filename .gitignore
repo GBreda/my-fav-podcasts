@@ -2,6 +2,7 @@
 *.log
 .env
 .env.local
+logs/
 
 backend/target/
 backend/data/

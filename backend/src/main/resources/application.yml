@@ -27,7 +27,7 @@ server:
 
 app:
   jwt:
-    secret: ${JWT_SECRET:dev-only-secret-change-me-please-32b}
+    secret: ${JWT_SECRET:dev-only-secret-change-me-please-32bytes-long}
     ttl-days: 14
   feed:
     max-episodes: 30

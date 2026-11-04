@@ -17,22 +17,17 @@ Feeds em `localhost`, rede privada ou outros alvos internos são recusados. O se
 
 ## Rodar na sua máquina
 
-Pré-requisitos: Java 21 e Node 22.
+Pré-requisitos: Java 21 e Node.js 22. Node 20 também serve.
+
+Na raiz do repositório:
 
 ```bash
-cd backend
-./mvnw spring-boot:run
+./dev
 ```
 
-Em outro terminal:
+Abra `http://localhost:3000`. A API fica em `http://localhost:8080`. Na primeira vez o comando cria o `.env` a partir de `.env.example` (senha do Postgres e JWT só desta máquina) e instala as dependências do frontend. O banco, sem Docker, é o arquivo H2 em `backend/data`. Ctrl+C encerra a API e a interface. Os logs ficam em `logs/api.log` e `logs/web.log`.
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Abra `http://localhost:3000`. A API sobe em `http://localhost:8080`. Sem Docker, o banco local é um arquivo H2 em `backend/data`.
+O `.env` não entra no Git. O segredo que vem no exemplo é o mesmo padrão da API local. Troque `JWT_SECRET` e `POSTGRES_PASSWORD` antes de publicar.
 
 Testes:
 
