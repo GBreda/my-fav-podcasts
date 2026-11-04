@@ -44,10 +44,17 @@ body {
   min-height: 100%;
 }
 
+html {
+  background: var(--bg);
+}
+
 body {
-  background:
-    radial-gradient(900px 420px at 50% -120px, color-mix(in oklab, var(--accent) 34%, transparent), transparent 68%),
-    var(--bg);
+  background: radial-gradient(
+      900px 420px at 50% -120px,
+      color-mix(in oklab, var(--accent) 34%, transparent),
+      transparent 68%
+    )
+    no-repeat;
   color: var(--ink);
 }
 
