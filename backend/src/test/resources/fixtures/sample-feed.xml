@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Canal de Teste</title>
+    <itunes:author>Equipe</itunes:author>
+    <description><![CDATA[<p>Um podcast &amp; mais.</p>]]></description>
+    <itunes:image href="https://cdn.example.com/show.jpg"/>
+    <item>
+      <title>Episodio novo</title>
+      <guid>guid-new</guid>
+      <pubDate>Wed, 04 Nov 2026 12:00:00 GMT</pubDate>
+      <itunes:duration>01:02:03</itunes:duration>
+      <itunes:summary><![CDATA[<p>Ola <b>mundo</b></p>]]></itunes:summary>
+      <enclosure url="https://cdn.example.com/new.mp3" type="audio/mpeg" length="1"/>
+    </item>
+    <item>
+      <title>Sem audio</title>
+      <guid>guid-skip</guid>
+      <pubDate>Tue, 03 Nov 2026 12:00:00 GMT</pubDate>
+      <description>nota</description>
+    </item>
+    <item>
+      <title>Episodio antigo</title>
+      <guid>guid-old</guid>
+      <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+      <itunes:duration>90</itunes:duration>
+      <enclosure url="https://cdn.example.com/old.m4a" type="audio/mp4" length="1"/>
+    </item>
+  </channel>
+</rss>

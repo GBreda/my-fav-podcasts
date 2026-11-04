@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "title": "Fila",
+    "description": "Uma fila só para os podcasts que você acompanha, na ordem em que foram lançados."
+  },
+  "nav": {
+    "queue": "Fila",
+    "search": "Buscar",
+    "library": "Biblioteca",
+    "settings": "Ajustes"
+  },
+  "landing": {
+    "kicker": "My Fav Podcasts",
+    "title": "A semana inteira, numa fila só.",
+    "subtitle": "Junta os episódios dos podcasts que você acompanha, na ordem em que saíram, e toca sem abrir outro app.",
+    "register": "Criar conta",
+    "login": "Já tenho conta",
+    "preview": "Sua fila",
+    "show1": "Sala de estar",
+    "title1": "O que a semana deixou passar",
+    "meta1": "há 2 horas · 48 min",
+    "show2": "Ondas curtas",
+    "title2": "Uma conversa sobre rádio de madrugada",
+    "meta2": "ontem · 32 min",
+    "show3": "Caderno de campo",
+    "title3": "Três histórias que cabem no fone",
+    "meta3": "há 3 dias · 41 min",
+    "point1Title": "Ordem de lançamento",
+    "point1Body": "O que saiu essa semana aparece junto, sem pular de programa em programa.",
+    "point2Title": "Player de áudio",
+    "point2Body": "Play, pausa, 15 segundos para trás e velocidade, aqui mesmo.",
+    "point3Title": "O feed é do podcast",
+    "point3Body": "A busca acha o RSS na API pública da iTunes. Os episódios vêm do próprio programa."
+  },
+  "auth": {
+    "loginTitle": "Entrar na fila",
+    "registerTitle": "Criar sua fila",
+    "email": "E-mail",
+    "password": "Senha",
+    "name": "Como te chamamos",
+    "submitLogin": "Entrar",
+    "submitRegister": "Criar conta",
+    "toRegister": "Criar uma conta",
+    "toLogin": "Entrar",
+    "needAccount": "Ainda não tem conta?",
+    "haveAccount": "Já tem conta?",
+    "passwordHint": "Pelo menos 8 caracteres."
+  },
+  "fields": {
+    "displayName": "Usa um nome de 2 a 40 caracteres.",
+    "email": "Esse e-mail não parece válido.",
+    "password": "A senha precisa ter entre 8 e 72 caracteres.",
+    "feedUrl": "Cola um endereço http ou https do feed.",
+    "currentPassword": "Informa a senha atual.",
+    "nextPassword": "A nova senha precisa ter pelo menos 8 caracteres."
+  },
+  "errors": {
+    "EMAIL_TAKEN": "Esse e-mail já tem conta.",
+    "INVALID_CREDENTIALS": "E-mail ou senha não conferem.",
+    "VALIDATION": "Confere os campos e tenta de novo.",
+    "ALREADY_FOLLOWING": "Esse podcast já está na sua fila.",
+    "FEED_UNREADABLE": "Não consegui ler o feed desse podcast.",
+    "FEED_URL_BLOCKED": "Essa URL de feed não pode ser usada.",
+    "DIRECTORY_UNAVAILABLE": "A busca de podcasts está fora do ar agora.",
+    "NOT_FOLLOWING": "Você não segue esse podcast.",
+    "PODCAST_NOT_FOUND": "Não achei esse podcast.",
+    "EPISODE_NOT_FOUND": "Não achei esse episódio na sua fila.",
+    "UNKNOWN": "Algo deu errado. Tenta de novo."
+  },
+  "greetings": {
+    "morning": "Bom dia",
+    "afternoon": "Boa tarde",
+    "evening": "Boa noite"
+  },
+  "queue": {
+    "count": "{count, plural, =0 {Nada novo por aqui} one {# episódio na fila} other {# episódios na fila}}",
+    "newest": "Mais recentes",
+    "oldest": "Mais antigos",
+    "unplayed": "Não ouvidos",
+    "all": "Todos",
+    "emptyTitle": "Sua fila está em silêncio.",
+    "emptyBody": "Assine um podcast e os episódios entram aqui, do mais recente para o mais antigo.",
+    "emptyCta": "Buscar podcasts",
+    "refresh": "Atualizar",
+    "refreshing": "Atualizando",
+    "refreshFailed": "Não consegui atualizar {failed, plural, one {# feed} other {# feeds}}.",
+    "markPlayed": "Marcar como ouvido"
+  },
+  "search": {
+    "title": "Buscar",
+    "placeholder": "Nome do podcast",
+    "prompt": "Procure um programa ou cole o RSS.",
+    "empty": "Nada com esse nome. Tenta o link do feed.",
+    "rssToggle": "Tenho o link do RSS",
+    "rssHelp": "O endereço que termina em .xml, ou o feed que o programa publica.",
+    "feedUrl": "URL do feed",
+    "subscribe": "Assinar",
+    "following": "Na fila",
+    "add": "Adicionar",
+    "adding": "Lendo o feed"
+  },
+  "library": {
+    "title": "Biblioteca",
+    "empty": "Você ainda não assinou nenhum podcast.",
+    "unfollow": "Deixar de seguir",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar"
+  },
+  "podcast": {
+    "follow": "Assinar",
+    "following": "Seguindo",
+    "episodes": "Episódios",
+    "back": "Biblioteca"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "theme": "Tema",
+    "dark": "Escuro",
+    "light": "Claro",
+    "system": "Sistema",
+    "language": "Idioma",
+    "portuguese": "Português",
+    "english": "English",
+    "account": "Conta",
+    "password": "Trocar senha",
+    "current": "Senha atual",
+    "next": "Nova senha",
+    "save": "Salvar senha",
+    "saved": "Senha atualizada.",
+    "logout": "Sair",
+    "about": "A busca usa a API pública da iTunes só para achar o feed. Os episódios vêm do RSS de cada podcast."
+  },
+  "player": {
+    "play": "Tocar",
+    "pause": "Pausar",
+    "back15": "Voltar 15 segundos",
+    "forward30": "Avançar 30 segundos",
+    "speed": "Velocidade",
+    "mark": "Marcar como ouvido",
+    "close": "Fechar o player",
+    "expand": "Abrir o player"
+  },
+  "common": {
+    "loading": "Carregando",
+    "retry": "Tentar de novo",
+    "hour": "h",
+    "minute": "min"
+  }
+}

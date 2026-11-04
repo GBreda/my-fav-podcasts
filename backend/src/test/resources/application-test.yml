@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:fila;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+app:
+  jwt:
+    secret: test-secret-key-must-be-at-least-32-bytes
+    ttl-days: 1
+  feed:
+    max-episodes: 10
+    min-interval: 1m

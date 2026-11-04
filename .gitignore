@@ -1,0 +1,14 @@
+.DS_Store
+*.log
+.env
+.env.local
+
+backend/target/
+backend/data/
+
+frontend/node_modules/
+frontend/.next/
+frontend/*.tsbuildinfo
+frontend/AGENTS.md
+frontend/out/
+frontend/coverage/
