@@ -1,0 +1,10 @@
+backend/target/
+backend/data/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/tsconfig.tsbuildinfo
+.idea/
+*.iml
+.DS_Store
+*.log

@@ -1,0 +1,11 @@
+{
+  "appId": "com.gbreda.fila",
+  "appName": "Fila",
+  "webDir": "out",
+  "server": {
+    "androidScheme": "https"
+  },
+  "ios": {
+    "contentInset": "automatic"
+  }
+}
