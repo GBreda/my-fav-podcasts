@@ -116,6 +116,15 @@ export function createApi(token: string | null) {
     changePassword(body: { currentPassword: string; nextPassword: string }) {
       return request<void>("/api/auth/password", { method: "POST", body: JSON.stringify(body) });
     },
+    forgotPassword(body: { email: string; locale: string }) {
+      return request<{ delivery: "log" | "email" }>("/api/auth/forgot-password", {
+        method: "POST",
+        body: JSON.stringify(body),
+      });
+    },
+    resetPassword(body: { token: string; password: string }) {
+      return request<void>("/api/auth/reset-password", { method: "POST", body: JSON.stringify(body) });
+    },
     search(query: string, country: string) {
       const params = new URLSearchParams({ q: query, country });
       return request<{ results: SearchHit[] }>(`/api/catalog/search?${params.toString()}`);

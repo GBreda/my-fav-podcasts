@@ -20,6 +20,17 @@ export const passwordSchema = z.object({
   nextPassword: z.string().min(8).max(72),
 });
 
+export const forgotSchema = z.object({
+  email: z.string().trim().toLowerCase().email(),
+});
+
+export const resetSchema = z
+  .object({
+    password: z.string().min(8).max(72),
+    confirm: z.string().min(8).max(72),
+  })
+  .refine((value) => value.password === value.confirm, { path: ["confirm"] });
+
 export function fieldErrors(error: z.ZodError): Record<string, true> {
   const fields: Record<string, true> = {};
   for (const issue of error.issues) {

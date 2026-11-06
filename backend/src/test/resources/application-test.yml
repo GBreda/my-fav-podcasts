@@ -15,3 +15,5 @@ app:
   feed:
     max-episodes: 10
     min-interval: 1m
+  public-base-url: http://localhost:3000
+  mail-from: fila@localhost

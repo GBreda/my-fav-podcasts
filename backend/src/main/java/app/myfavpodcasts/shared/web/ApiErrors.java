@@ -18,7 +18,7 @@ public class ApiErrors {
             case "INVALID_CREDENTIALS", "UNAUTHENTICATED" -> HttpStatus.UNAUTHORIZED;
             case "PODCAST_NOT_FOUND", "EPISODE_NOT_FOUND", "NOT_FOLLOWING" -> HttpStatus.NOT_FOUND;
             case "FEED_UNREADABLE" -> HttpStatus.UNPROCESSABLE_CONTENT;
-            case "FEED_URL_BLOCKED", "VALIDATION" -> HttpStatus.BAD_REQUEST;
+            case "FEED_URL_BLOCKED", "VALIDATION", "RESET_TOKEN_INVALID" -> HttpStatus.BAD_REQUEST;
             case "DIRECTORY_UNAVAILABLE" -> HttpStatus.SERVICE_UNAVAILABLE;
             default -> HttpStatus.BAD_REQUEST;
         };
