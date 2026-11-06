@@ -154,6 +154,7 @@
     "speed": "Speed",
     "mark": "Mark as played",
     "close": "Close player",
+    "collapse": "Minimize",
     "expand": "Open player"
   },
   "common": {

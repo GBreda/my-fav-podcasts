@@ -172,6 +172,24 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
     });
   }
 
+  function dismiss() {
+    playGeneration.current += 1;
+    void persist(false);
+    const audio = audioRef.current;
+    setTrack(null);
+    trackRef.current = null;
+    setPlaying(false);
+    setExpanded(false);
+    setPosition(0);
+    setDuration(0);
+    sessionStorage.removeItem("fila.now");
+    if (audio) {
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
+    }
+  }
+
   function toggle() {
     const audio = audioRef.current;
     if (!audio || !track) {
@@ -252,7 +270,8 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
           expanded={expanded}
           onToggle={toggle}
           onExpand={() => setExpanded(true)}
-          onClose={() => setExpanded(false)}
+          onCollapse={() => setExpanded(false)}
+          onDismiss={dismiss}
           onSkip={skip}
           onSeek={(next) => {
             if (audioRef.current) {
@@ -285,7 +304,8 @@ function PlayerChrome({
   expanded,
   onToggle,
   onExpand,
-  onClose,
+  onCollapse,
+  onDismiss,
   onSkip,
   onSeek,
   onRate,
@@ -299,7 +319,8 @@ function PlayerChrome({
   expanded: boolean;
   onToggle: () => void;
   onExpand: () => void;
-  onClose: () => void;
+  onCollapse: () => void;
+  onDismiss: () => void;
   onSkip: (delta: number) => void;
   onSeek: (value: number) => void;
   onRate: () => void;
@@ -319,6 +340,14 @@ function PlayerChrome({
                 <span className="block truncate text-xs text-muted">{track.podcastTitle}</span>
                 <span className="block truncate font-serif text-base leading-5">{track.title}</span>
               </span>
+            </button>
+            <button
+              type="button"
+              aria-label={t("close")}
+              onClick={onDismiss}
+              className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-muted"
+            >
+              <CloseIcon />
             </button>
             <button
               type="button"
@@ -343,9 +372,17 @@ function PlayerChrome({
       {expanded ? (
         <div className="fixed inset-0 z-40 mx-auto flex w-full max-w-lg flex-col bg-bg" role="dialog" aria-modal="true">
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-5 pt-6">
-            <div className="flex justify-end">
-              <button type="button" className="text-sm text-muted" onClick={onClose}>
-                {t("close")}
+            <div className="flex items-center justify-between">
+              <button type="button" className="text-sm text-muted" onClick={onCollapse}>
+                {t("collapse")}
+              </button>
+              <button
+                type="button"
+                aria-label={t("close")}
+                onClick={onDismiss}
+                className="grid h-11 w-11 place-items-center rounded-full text-muted"
+              >
+                <CloseIcon />
               </button>
             </div>
             <Artwork src={track.artworkUrl} title={track.title} className="mx-auto mt-4 aspect-square w-full max-h-[42vh] max-w-sm rounded-[2rem]" />
@@ -448,6 +485,14 @@ function SkipButton({
     >
       {children}
     </button>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
+      <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
   );
 }
 
