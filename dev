@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+# Sobe a API (Spring Boot, banco H2) e a interface (Next.js) nesta máquina.
+set -euo pipefail
+
+root="$(cd "$(dirname "$0")" && pwd)"
+cd "$root"
+
+if [[ ! -f .env ]]; then
+  cp .env.example .env
+  echo "Arquivo .env criado a partir de .env.example. Os valores servem só para esta máquina."
+fi
+
+jwt_secret="$(awk -F= '/^JWT_SECRET=/ { print substr($0, index($0, "=") + 1); exit }' .env)"
+jwt_secret="${jwt_secret//$'\r'/}"
+if [[ ${#jwt_secret} -lt 32 ]]; then
+  echo "JWT_SECRET no .env precisa ter pelo menos 32 caracteres."
+  exit 1
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "Instale o Node.js 22 e rode de novo."
+  exit 1
+fi
+node_major="$(node -v | sed -E 's/^v([0-9]+).*/\1/')"
+if [[ "$node_major" -lt 20 ]]; then
+  echo "Precisa do Node.js 20 ou mais novo. O CI usa a 22. Esta máquina tem $(node -v)."
+  exit 1
+fi
+
+if [[ -z "${JAVA_HOME:-}" ]]; then
+  if [[ "$(uname -s)" == "Darwin" ]] && [[ -x /usr/libexec/java_home ]]; then
+    JAVA_HOME="$(/usr/libexec/java_home -v 21 2>/dev/null || true)"
+  fi
+fi
+if [[ -z "${JAVA_HOME:-}" ]]; then
+  for candidate in \
+    /usr/lib/jvm/java-21-openjdk-amd64 \
+    /usr/lib/jvm/java-21-openjdk \
+    /usr/lib/jvm/temurin-21-jdk-amd64 \
+    /usr/lib/jvm/temurin-21-jdk
+  do
+    if [[ -x "$candidate/bin/java" ]]; then
+      JAVA_HOME="$candidate"
+      break
+    fi
+  done
+fi
+if [[ -z "${JAVA_HOME:-}" || ! -x "$JAVA_HOME/bin/java" ]]; then
+  echo "Instale o Java 21 e, se o comando java não achar sozinho, exporte JAVA_HOME."
+  exit 1
+fi
+export JAVA_HOME
+java_version="$("$JAVA_HOME/bin/java" -version 2>&1 | awk -F\" '/version/ { print $2; exit }')"
+case "$java_version" in
+  21.*) ;;
+  *)
+    echo "A API local precisa do Java 21. JAVA_HOME aponta para $java_version ($JAVA_HOME)."
+    exit 1
+    ;;
+esac
+
+listening() {
+  local port="$1"
+  if command -v lsof >/dev/null 2>&1; then
+    lsof -nP -iTCP:"$port" -sTCP:LISTEN >/dev/null 2>&1
+  elif command -v ss >/dev/null 2>&1; then
+    ss -ltn "sport = :$port" | grep -q LISTEN
+  else
+    return 1
+  fi
+}
+
+if listening 8080; then
+  echo "A porta 8080 já está em uso. Encerre o processo que ocupa a API e rode de novo."
+  exit 1
+fi
+if listening 3000; then
+  echo "A porta 3000 já está em uso. Encerre o processo que ocupa a interface e rode de novo."
+  exit 1
+fi
+
+if [[ ! -d frontend/node_modules ]]; then
+  echo "Instalando dependências do frontend..."
+  (cd frontend && npm install)
+fi
+
+mkdir -p logs
+: > logs/api.log
+: > logs/web.log
+
+set -m
+(
+  cd "$root/backend"
+  exec env JWT_SECRET="$jwt_secret" ./mvnw -B spring-boot:run
+) >logs/api.log 2>&1 &
+api_pid=$!
+
+(
+  cd "$root/frontend"
+  exec npm run dev -- --hostname 127.0.0.1 --port 3000
+) >logs/web.log 2>&1 &
+web_pid=$!
+
+cleanup() {
+  trap - EXIT INT TERM
+  kill -- -"$api_pid" >/dev/null 2>&1 || kill "$api_pid" >/dev/null 2>&1 || true
+  kill -- -"$web_pid" >/dev/null 2>&1 || kill "$web_pid" >/dev/null 2>&1 || true
+  wait "$api_pid" "$web_pid" >/dev/null 2>&1 || true
+}
+trap cleanup EXIT INT TERM
+
+healthy() {
+  if command -v curl >/dev/null 2>&1; then
+    curl -sf "http://127.0.0.1:8080/api/health" >/dev/null
+  else
+    node -e "fetch('http://127.0.0.1:8080/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  fi
+}
+
+echo "Aguardando a API em http://127.0.0.1:8080 ..."
+ready=0
+for _ in $(seq 1 150); do
+  if healthy; then
+    ready=1
+    break
+  fi
+  if ! kill -0 "$api_pid" >/dev/null 2>&1; then
+    echo "A API encerrou antes de ficar pronta. Últimas linhas de logs/api.log:"
+    tail -n 40 logs/api.log || true
+    exit 1
+  fi
+  sleep 2
+done
+if [[ "$ready" -ne 1 ]]; then
+  echo "A API não respondeu a tempo. Veja logs/api.log."
+  exit 1
+fi
+
+echo "Fila no ar:  http://localhost:3000"
+echo "API no ar:   http://127.0.0.1:8080"
+echo "Para encerrar os dois, Ctrl+C."
+tail -n +1 -F logs/api.log logs/web.log

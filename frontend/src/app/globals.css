@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-good: var(--good);
+}
+
+:root {
+  --bg: #f3eee6;
+  --surface: #fffaf4;
+  --ink: #1c1612;
+  --muted: #6e6258;
+  --line: rgba(28, 22, 18, 0.12);
+  --accent: #e4572e;
+  --accent-ink: #fff8f4;
+  --good: #1f7a45;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #100e0c;
+  --surface: #1c1814;
+  --ink: #f6f1e8;
+  --muted: #b6a696;
+  --line: rgba(246, 241, 232, 0.12);
+  --accent: #ff7a45;
+  --accent-ink: #1c0e08;
+  --good: #8dcea4;
+  color-scheme: dark;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: radial-gradient(
+      900px 420px at 50% -120px,
+      color-mix(in oklab, var(--accent) 34%, transparent),
+      transparent 68%
+    )
+    no-repeat;
+  color: var(--ink);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}

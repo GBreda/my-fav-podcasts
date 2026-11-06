@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "title": "Fila",
+    "description": "One queue for the podcasts you follow, in the order they were released."
+  },
+  "nav": {
+    "queue": "Queue",
+    "search": "Search",
+    "library": "Library",
+    "settings": "Settings"
+  },
+  "landing": {
+    "kicker": "My Fav Podcasts",
+    "title": "The whole week, in one queue.",
+    "subtitle": "It gathers new episodes from the shows you follow, in release order, and plays them here.",
+    "register": "Create account",
+    "login": "I already have one",
+    "preview": "Your queue",
+    "show1": "Living room",
+    "title1": "What the week left behind",
+    "meta1": "2 hours ago · 48 min",
+    "show2": "Short waves",
+    "title2": "A conversation about late-night radio",
+    "meta2": "yesterday · 32 min",
+    "show3": "Field notes",
+    "title3": "Three stories that fit in your headphones",
+    "meta3": "3 days ago · 41 min",
+    "point1Title": "Release order",
+    "point1Body": "What came out this week shows up together, without hopping between shows.",
+    "point2Title": "Audio player",
+    "point2Body": "Play, pause, jump back 15 seconds, and change the speed, right here.",
+    "point3Title": "The feed belongs to the show",
+    "point3Body": "Search finds the RSS feed through the public iTunes API. Episodes come from the show itself."
+  },
+  "auth": {
+    "loginTitle": "Open your queue",
+    "registerTitle": "Start your queue",
+    "email": "Email",
+    "password": "Password",
+    "name": "What should we call you",
+    "submitLogin": "Log in",
+    "submitRegister": "Create account",
+    "toRegister": "Create an account",
+    "toLogin": "Log in",
+    "needAccount": "No account yet?",
+    "haveAccount": "Already have an account?",
+    "passwordHint": "At least 8 characters."
+  },
+  "fields": {
+    "displayName": "Use a name between 2 and 40 characters.",
+    "email": "That email doesn't look valid.",
+    "password": "Password must be between 8 and 72 characters.",
+    "feedUrl": "Paste an http or https feed address.",
+    "currentPassword": "Enter your current password.",
+    "nextPassword": "The new password needs at least 8 characters."
+  },
+  "errors": {
+    "EMAIL_TAKEN": "That email already has an account.",
+    "INVALID_CREDENTIALS": "Email or password doesn't match.",
+    "VALIDATION": "Check the fields and try again.",
+    "ALREADY_FOLLOWING": "This show is already in your queue.",
+    "FEED_UNREADABLE": "I couldn't read that podcast feed.",
+    "FEED_URL_BLOCKED": "That feed URL can't be used.",
+    "DIRECTORY_UNAVAILABLE": "Podcast search is unavailable right now.",
+    "NOT_FOLLOWING": "You don't follow this show.",
+    "PODCAST_NOT_FOUND": "I couldn't find that podcast.",
+    "EPISODE_NOT_FOUND": "I couldn't find that episode in your queue.",
+    "UNKNOWN": "Something went wrong. Try again."
+  },
+  "greetings": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening"
+  },
+  "queue": {
+    "count": "{count, plural, =0 {Nothing new here} one {# episode in the queue} other {# episodes in the queue}}",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "unplayed": "Unplayed",
+    "all": "All",
+    "emptyTitle": "Your queue is quiet.",
+    "emptyBody": "Follow a podcast and new episodes land here, newest release first.",
+    "emptyCta": "Search podcasts",
+    "refresh": "Refresh",
+    "refreshing": "Refreshing",
+    "refreshFailed": "Couldn't refresh {failed, plural, one {# feed} other {# feeds}}.",
+    "markPlayed": "Mark as played"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Podcast name",
+    "prompt": "Search for a show or paste its RSS feed.",
+    "empty": "Nothing under that name. Try the feed link.",
+    "rssToggle": "I have the RSS link",
+    "rssHelp": "The address that ends in .xml, or the feed the show publishes.",
+    "feedUrl": "Feed URL",
+    "subscribe": "Follow",
+    "following": "In queue",
+    "add": "Add",
+    "adding": "Reading feed"
+  },
+  "library": {
+    "title": "Library",
+    "empty": "You haven't followed a podcast yet.",
+    "unfollow": "Unfollow",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "podcast": {
+    "follow": "Follow",
+    "following": "Following",
+    "episodes": "Episodes",
+    "back": "Library"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System",
+    "language": "Language",
+    "portuguese": "Português",
+    "english": "English",
+    "account": "Account",
+    "password": "Change password",
+    "current": "Current password",
+    "next": "New password",
+    "save": "Save password",
+    "saved": "Password updated.",
+    "logout": "Log out",
+    "about": "Search uses the public iTunes API only to find the feed. Episodes come from each podcast's RSS."
+  },
+  "player": {
+    "play": "Play",
+    "pause": "Pause",
+    "back15": "Back 15 seconds",
+    "forward30": "Forward 30 seconds",
+    "speed": "Speed",
+    "mark": "Mark as played",
+    "close": "Close player",
+    "expand": "Open player"
+  },
+  "common": {
+    "loading": "Loading",
+    "retry": "Try again",
+    "hour": "hr",
+    "minute": "min"
+  }
+}

@@ -1,21 +1,10 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
-const isExport = process.env.NEXT_OUTPUT === "export";
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-const nextConfig: NextConfig = {
-  images: { unoptimized: true },
-  ...(isExport
-    ? { output: "export" as const }
-    : {
-        async rewrites() {
-          return [
-            {
-              source: "/api/:path*",
-              destination: "http://localhost:8080/api/:path*",
-            },
-          ];
-        },
-      }),
+const config: NextConfig = {
+  output: "standalone",
 };
 
-export default nextConfig;
+export default withNextIntl(config);
