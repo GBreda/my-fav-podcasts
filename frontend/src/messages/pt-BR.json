@@ -149,10 +149,12 @@
     "play": "Tocar",
     "pause": "Pausar",
     "back15": "Voltar 15 segundos",
-    "forward30": "Avançar 30 segundos",
+    "forward15": "Avançar 15 segundos",
+    "seek": "Posição na faixa",
     "speed": "Velocidade",
     "mark": "Marcar como ouvido",
     "close": "Fechar o player",
+    "collapse": "Recolher",
     "expand": "Abrir o player"
   },
   "common": {

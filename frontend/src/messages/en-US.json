@@ -149,10 +149,12 @@
     "play": "Play",
     "pause": "Pause",
     "back15": "Back 15 seconds",
-    "forward30": "Forward 30 seconds",
+    "forward15": "Forward 15 seconds",
+    "seek": "Position in the episode",
     "speed": "Speed",
     "mark": "Mark as played",
     "close": "Close player",
+    "collapse": "Minimize",
     "expand": "Open player"
   },
   "common": {
