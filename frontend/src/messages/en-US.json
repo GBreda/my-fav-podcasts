@@ -44,7 +44,20 @@
     "toLogin": "Log in",
     "needAccount": "No account yet?",
     "haveAccount": "Already have an account?",
-    "passwordHint": "At least 8 characters."
+    "passwordHint": "At least 8 characters.",
+    "forgot": "Forgot password",
+    "forgotTitle": "Choose a new password",
+    "forgotLead": "Enter the account email. If it exists, we send a link to choose a new password.",
+    "submitForgot": "Send link",
+    "forgotSentTitle": "Request sent",
+    "forgotSentEmail": "If that email has an account, the link is on its way. It lasts 30 minutes.",
+    "forgotSentLog": "With no mail server, the link is written to the API log (logs/api.log) when the account exists. It lasts 30 minutes.",
+    "resetTitle": "New password",
+    "resetLead": "Choose a new password for this account.",
+    "confirm": "Repeat the password",
+    "submitReset": "Save password",
+    "resetDoneTitle": "Password updated",
+    "resetDone": "You can log in with the new password."
   },
   "fields": {
     "displayName": "Use a name between 2 and 40 characters.",
@@ -52,7 +65,8 @@
     "password": "Password must be between 8 and 72 characters.",
     "feedUrl": "Paste an http or https feed address.",
     "currentPassword": "Enter your current password.",
-    "nextPassword": "The new password needs at least 8 characters."
+    "nextPassword": "The new password needs at least 8 characters.",
+    "confirm": "The two passwords need to match."
   },
   "errors": {
     "EMAIL_TAKEN": "That email already has an account.",
@@ -65,6 +79,7 @@
     "NOT_FOLLOWING": "You don't follow this show.",
     "PODCAST_NOT_FOUND": "I couldn't find that podcast.",
     "EPISODE_NOT_FOUND": "I couldn't find that episode in your queue.",
+    "RESET_TOKEN_INVALID": "That link expired or was already used. Ask for another.",
     "UNKNOWN": "Something went wrong. Try again."
   },
   "greetings": {

@@ -4,6 +4,8 @@ import app.myfavpodcasts.identity.application.AuthResult;
 import app.myfavpodcasts.identity.application.ChangePassword;
 import app.myfavpodcasts.identity.application.LoginUser;
 import app.myfavpodcasts.identity.application.RegisterUser;
+import app.myfavpodcasts.identity.application.RequestPasswordReset;
+import app.myfavpodcasts.identity.application.ResetPassword;
 import app.myfavpodcasts.identity.domain.User;
 import app.myfavpodcasts.shared.security.AuthPrincipal;
 import app.myfavpodcasts.shared.security.CurrentUsers;
@@ -25,11 +27,21 @@ public class AuthController {
     private final RegisterUser registerUser;
     private final LoginUser loginUser;
     private final ChangePassword changePassword;
+    private final RequestPasswordReset requestPasswordReset;
+    private final ResetPassword resetPassword;
 
-    public AuthController(RegisterUser registerUser, LoginUser loginUser, ChangePassword changePassword) {
+    public AuthController(
+            RegisterUser registerUser,
+            LoginUser loginUser,
+            ChangePassword changePassword,
+            RequestPasswordReset requestPasswordReset,
+            ResetPassword resetPassword
+    ) {
         this.registerUser = registerUser;
         this.loginUser = loginUser;
         this.changePassword = changePassword;
+        this.requestPasswordReset = requestPasswordReset;
+        this.resetPassword = resetPassword;
     }
 
     @PostMapping("/api/auth/register")
@@ -55,6 +67,17 @@ public class AuthController {
         changePassword.execute(CurrentUsers.require().id(), body.currentPassword(), body.nextPassword());
     }
 
+    @PostMapping("/api/auth/forgot-password")
+    ForgotResponse forgot(@Valid @RequestBody ForgotBody body) {
+        return new ForgotResponse(requestPasswordReset.execute(body.email(), body.locale()));
+    }
+
+    @PostMapping("/api/auth/reset-password")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void reset(@Valid @RequestBody ResetBody body) {
+        resetPassword.execute(body.token(), body.password());
+    }
+
     public record RegisterBody(
             @NotBlank @Email @Size(max = 255) String email,
             @NotBlank @Size(min = 8, max = 72) String password,
@@ -71,6 +94,21 @@ public class AuthController {
     public record PasswordBody(
             @NotBlank @Size(max = 72) String currentPassword,
             @NotBlank @Size(min = 8, max = 72) String nextPassword
+    ) {
+    }
+
+    public record ForgotBody(
+            @NotBlank @Email @Size(max = 255) String email,
+            @Size(max = 16) String locale
+    ) {
+    }
+
+    public record ForgotResponse(String delivery) {
+    }
+
+    public record ResetBody(
+            @NotBlank @Size(max = 200) String token,
+            @NotBlank @Size(min = 8, max = 72) String password
     ) {
     }
 

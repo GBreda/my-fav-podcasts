@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .authenticationEntryPoint((request, response, exception) -> write(response, 401))
                         .accessDeniedHandler((request, response, exception) -> write(response, 403)))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login", "/api/auth/forgot-password", "/api/auth/reset-password").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/health").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().permitAll())

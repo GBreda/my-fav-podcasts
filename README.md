@@ -27,6 +27,8 @@ Na raiz do repositório:
 
 Abra `http://localhost:3000`. A API fica em `http://localhost:8080`. Na primeira vez o comando cria o `.env` a partir de `.env.example` (senha do Postgres e JWT só desta máquina) e instala as dependências do frontend. O banco, sem Docker, é o arquivo H2 em `backend/data`. Ctrl+C encerra a API e a interface. Os logs ficam em `logs/api.log` e `logs/web.log`.
 
+Esqueci a senha fica em Entrar. Sem SMTP, o link de redefinição é escrito em `logs/api.log` e vale 30 minutos. Para enviar e-mail de verdade, defina `SPRING_MAIL_HOST` (e usuário, senha e porta, se o servidor pedir) e `APP_MAIL_FROM`. O link aponta para `APP_PUBLIC_BASE_URL`, que no Docker é o endereço da interface.
+
 O `.env` não entra no Git. O segredo que vem no exemplo é o mesmo padrão da API local. Troque `JWT_SECRET` e `POSTGRES_PASSWORD` antes de publicar.
 
 Testes:
@@ -53,7 +55,7 @@ Troque `JWT_SECRET` e `POSTGRES_PASSWORD` antes de publicar. O segredo do JWT pr
 
 O backend separa três contextos:
 
-- **identity** — conta, senha e sessão JWT
+- **identity** — conta, senha, sessão JWT e redefinição de senha
 - **catalog** — busca na iTunes, leitura de RSS, podcasts e episódios
 - **listening** — assinaturas, fila por data de lançamento e progresso do player
 
@@ -65,7 +67,7 @@ A interface é Next.js, TypeScript, Tailwind e Zod. O texto da tela está em pt-
 
 A tela é mobile first, com área segura, toque grande e `playsInline` no áudio. O manifesto permite instalar como PWA. A URL da API é `NEXT_PUBLIC_API_BASE`: vazia quando o nginx serve tudo na mesma origem, e absoluta quando um app nativo precisar falar com o servidor.
 
-Ainda não há vídeo, download offline, recuperação de senha por e-mail nem publicação nas lojas.
+Ainda não há vídeo, download offline nem publicação nas lojas. A recuperação de senha envia o link por e-mail quando o SMTP está configurado.
 
 ## Publicar a versão web pelo menor custo
 

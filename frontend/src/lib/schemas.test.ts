@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { feedSchema, loginSchema, registerSchema } from "./schemas";
+import { feedSchema, forgotSchema, loginSchema, registerSchema, resetSchema } from "./schemas";
 
 describe("registerSchema", () => {
   it("accepts a trimmed account", () => {
@@ -28,6 +28,23 @@ describe("registerSchema", () => {
 describe("loginSchema", () => {
   it("rejects an empty password", () => {
     expect(loginSchema.safeParse({ email: "ana@example.com", password: "" }).success).toBe(false);
+  });
+});
+
+describe("forgotSchema", () => {
+  it("lowercases the email", () => {
+    const parsed = forgotSchema.safeParse({ email: " Ana@Example.com " });
+    expect(parsed.success).toBe(true);
+    if (parsed.success) {
+      expect(parsed.data.email).toBe("ana@example.com");
+    }
+  });
+});
+
+describe("resetSchema", () => {
+  it("rejects a password that does not match the confirmation", () => {
+    expect(resetSchema.safeParse({ password: "senha-nova", confirm: "senha-outra" }).success).toBe(false);
+    expect(resetSchema.safeParse({ password: "senha-nova", confirm: "senha-nova" }).success).toBe(true);
   });
 });
 
