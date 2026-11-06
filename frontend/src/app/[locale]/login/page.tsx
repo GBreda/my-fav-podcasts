@@ -69,6 +69,11 @@ export default function LoginPage() {
           onChange={(event) => setPassword(event.target.value)}
           error={errors.password ? fields("password") : null}
         />
+        <div className="flex justify-end">
+          <Link href="/forgot" className="text-sm text-ink underline">
+            {t("forgot")}
+          </Link>
+        </div>
         <Button type="submit" className="w-full" disabled={pending}>
           {t("submitLogin")}
         </Button>

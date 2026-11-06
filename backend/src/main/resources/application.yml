@@ -32,6 +32,8 @@ app:
   feed:
     max-episodes: 30
     min-interval: 15m
+  public-base-url: ${APP_PUBLIC_BASE_URL:http://localhost:3000}
+  mail-from: ${APP_MAIL_FROM:fila@localhost}
   cors-origins:
     - http://localhost:3000
     - http://127.0.0.1:3000

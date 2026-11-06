@@ -44,7 +44,20 @@
     "toLogin": "Entrar",
     "needAccount": "Ainda não tem conta?",
     "haveAccount": "Já tem conta?",
-    "passwordHint": "Pelo menos 8 caracteres."
+    "passwordHint": "Pelo menos 8 caracteres.",
+    "forgot": "Esqueci a senha",
+    "forgotTitle": "Criar outra senha",
+    "forgotLead": "Informa o e-mail da conta. Se ele existir, enviamos um link para escolher uma senha nova.",
+    "submitForgot": "Enviar link",
+    "forgotSentTitle": "Pedido enviado",
+    "forgotSentEmail": "Se esse e-mail tiver conta, o link está a caminho. Ele vale por 30 minutos.",
+    "forgotSentLog": "Sem servidor de e-mail, o link fica no log da API (logs/api.log), se essa conta existir. Ele vale por 30 minutos.",
+    "resetTitle": "Nova senha",
+    "resetLead": "Escolhe uma senha nova para esta conta.",
+    "confirm": "Repita a senha",
+    "submitReset": "Salvar senha",
+    "resetDoneTitle": "Senha atualizada",
+    "resetDone": "Agora entra com a senha nova."
   },
   "fields": {
     "displayName": "Usa um nome de 2 a 40 caracteres.",
@@ -52,7 +65,8 @@
     "password": "A senha precisa ter entre 8 e 72 caracteres.",
     "feedUrl": "Cola um endereço http ou https do feed.",
     "currentPassword": "Informa a senha atual.",
-    "nextPassword": "A nova senha precisa ter pelo menos 8 caracteres."
+    "nextPassword": "A nova senha precisa ter pelo menos 8 caracteres.",
+    "confirm": "As duas senhas precisam ser iguais."
   },
   "errors": {
     "EMAIL_TAKEN": "Esse e-mail já tem conta.",
@@ -65,6 +79,7 @@
     "NOT_FOLLOWING": "Você não segue esse podcast.",
     "PODCAST_NOT_FOUND": "Não achei esse podcast.",
     "EPISODE_NOT_FOUND": "Não achei esse episódio na sua fila.",
+    "RESET_TOKEN_INVALID": "Esse link expirou ou já foi usado. Pede outro.",
     "UNKNOWN": "Algo deu errado. Tenta de novo."
   },
   "greetings": {
