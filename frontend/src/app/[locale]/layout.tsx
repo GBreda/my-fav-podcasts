@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Outfit } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
@@ -8,8 +8,13 @@ import { PlayerProvider } from "@/components/player";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces" });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("meta");
@@ -46,7 +51,7 @@ export default async function LocaleLayout({ children }: { children: React.React
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning className={`${outfit.variable} ${fraunces.variable} h-full`}>
+    <html lang={locale} suppressHydrationWarning className={`${roboto.variable} h-full`}>
       <body className="min-h-dvh font-sans antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
