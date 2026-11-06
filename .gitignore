@@ -13,3 +13,6 @@ frontend/*.tsbuildinfo
 frontend/AGENTS.md
 frontend/out/
 frontend/coverage/
+
+.idea/
+*.iml
